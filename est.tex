@@ -1,4 +1,4 @@
-% Created 2021-01-25 Mon 12:41
+% Created 2021-01-25 Mon 13:31
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -20,11 +20,10 @@
 \usepackage{amsmath}
 \usepackage{merriweather} %% Option 'black' gives heavier bold face
 \usepackage[T1]{fontenc}
-\author{***REMOVED***}
 \date{\today}
 \title{Estudios}
 \hypersetup{
- pdfauthor={***REMOVED***},
+ pdfauthor={},
  pdftitle={Estudios},
  pdfkeywords={},
  pdfsubject={},
@@ -37,7 +36,7 @@
 
 
 \section{Tema 1: Infraestructura de los centros de datos.}
-\label{sec:orgfbf8d7d}
+\label{sec:org1cfdf28}
 \textbf{¿Qué es un centro de datos?}
 \begin{quote}
 Es un edificio o parte de un edificio destinado al almacenamiento de áreas de computación y sus zonas de soporte.
@@ -110,39 +109,39 @@ TIER & Redundancia & Susceptible a & Líneas de corriente & Grupos electrógenos
 \end{adjustbox}
 
 \section{Tema 2: RAID}
-\label{sec:orgac390dc}
+\label{sec:org57930ea}
 \subsection{RAID 0}
-\label{sec:orgfdec8fd}
+\label{sec:orgc7f7e8b}
 \begin{itemize}
 \item No tiene redundancia \(\Rightarrow\) no tolera fallos.
 \item Capacidad efectiva: N * tamaño del disco más pequeño.
 \end{itemize}
 \subsection{RAID 1}
-\label{sec:orgb1bc280}
+\label{sec:orgc6d468f}
 \begin{itemize}
 \item Tiene redundancia \(\Rightarrow\) tolera fallos de N-1 discos.
 \item Capacidad efectiva: tamaño del disco más pequeño.
 \end{itemize}
 \subsection{RAID 5}
-\label{sec:org90411fb}
+\label{sec:orgba27a0a}
 \begin{itemize}
 \item Mínimo 3 discos
 \item Capacidad efectiva: (N-1) * tamaño de disco más pequeño.
 \end{itemize}
 \section{Tema 3: Redes}
-\label{sec:org61bf1dd}
+\label{sec:orgcf67d2b}
 \subsection{¿Qué es un firewall?}
-\label{sec:org540d2b1}
+\label{sec:orgebd1227}
 \begin{quote}
 Un componente tanto hardware como software que se encarga de controlar el acceso a la red. Tiene como un objetivo principal impedir los ataques externos al interior de la red, y también monitorizar y controlar las conexiones internas al exterior.
 \end{quote}
 \subsection{¿Cuáles son las limitaciones de un firewall?}
-\label{sec:org8e5dea4}
+\label{sec:org57189ed}
 \begin{quote}
 Los firewall normalmente son un punto único de fallo, pues suele encontrarse solo uno entre la red externa y la interna. Además, no protege de las amenazas internas. También puede dar una sensación falsa de seguridad, pero las amenazas en la red constan de muchos aspectos.
 \end{quote}
 \subsection{¿Qué diferentes filtros firewall hay? Explica cada uno.}
-\label{sec:orgfc7f711}
+\label{sec:org50dc6ac}
 \begin{quote}
 Existen tres diferentes tipos de filtros firewall: filtro de paquetes, filtro de paquetes con estado, y filtro a nivel de aplicación.
 
@@ -152,7 +151,7 @@ Los filtros de paquetes con estado se podría decir que tienen \guillemotleft{}m
 Los filtros a nivel de aplicación ya conocen los protocolos de capa 5 TCP/IP que pasan por ellos. Así, pueden hacer un análasis más riguroso por ejemplo para vetar acceso a páginas web basado en el texto o palabras clave que pueda haber. Además, por lo general si no conoce el protocolo de capa de aplicación, como no cuenta con el \guillemotleft{}proxy\guillemotright{} para ese protocolo ni siquiera deja pasar los paquetes.
 \end{quote}
 \subsection{¿En que consiste una regla por defecto en un firewall?}
-\label{sec:orgce6c774}
+\label{sec:org4d3aaf6}
 \begin{quote}
 La mayoría de los firewalls aplican una serie de reglas para decidir si un paquete pasa o no a través de él. Existen dos técnicas principales para el control del paso: aceptar por defecto (blacklisting) y denegar por defecto (whitelisting).
 
@@ -162,7 +161,7 @@ Denegar por defecto significa que si un paquete no es detectado por las reglas c
 \end{quote}
 
 \subsection{Ventajas e inconvenientes de los diferentes tipos de filtrado de paquetes.}
-\label{sec:orgc9d69f2}
+\label{sec:orgf4e26bc}
 \begin{quote}
 Los filtros con estado o de paquetes tienen un buen rendimiento, pues tiene pocas dificultades en tomar las decisiones. Son transparentes para el usuario. Son simples. Pero tienen un mayor margen de error o falta de eficacia, pues la información que disponen para tomar las decisiones es limitada.
 
@@ -171,29 +170,29 @@ Los filtros a nivel de aplicación consiguen una mejor separación entre la red 
 Filtro a nivel de circuitos. Un híbrido entre un filtro de paquetes y uno de aplicación. No maneja contenidos de capa de aplicación, pero las conexiones no se hacen directamente interno-externo, si no que son interno - firewall,firewall - externo.
 \end{quote}
 \subsection{Ventajas e inconvenientes de topología \emph{dual homed host}.}
-\label{sec:org14af22c}
+\label{sec:org7295f69}
 \begin{quote}
 En una topología \emph{dual homed host} se tiene un único host dedicado entre la red interna y la red externa. Sus ventajas son una mayor facilidad de gestión, un menor coste. Sus desventajas son las guisantes: un único punto de fallo, cualquier vulnerabilidad del SO o firewall de ese host nos pone en riesgo.
 \end{quote}
 \subsection{Ventajas e inconvenientes de topología \emph{screened host o host bastion}.}
-\label{sec:orga55ef17}
+\label{sec:org2c52965}
 \begin{quote}
 En una topología \emph{screened host} se tiene un único host visible a la red externa, tras un firewall. Sus ventajas son una mayor facilidad de gestión, un menor coste. Sus desventajas son las guisantes: un único punto de fallo, cualquier vulnerabilidad o ataque al \emph{screened host} pone en riesgo a toda la red, pues ya esta detrás del firewall y no hay mucho que pueda hacer.
 \end{quote}
 \subsection{Explica la topología \emph{untrusted host}.}
-\label{sec:orga956e38}
+\label{sec:org05012e7}
 \begin{quote}
 El host con los servicios públicos se encuentra fuera de la red protegida. El firewall no tiene control sobre él. La configuración es delicada.
 \end{quote}
 \subsection{Explica la topología \emph{DMZ}.}
-\label{sec:org7835048}
+\label{sec:org0c4c066}
 \begin{quote}
 La topología DMZ cuenta con tres redes diferentes: la publica, la interna y protegida, y la zona desmilitarizada. Todas ellas interconectadas por un único firewall con tres interfaces.
 Los equipos de la DMZ no se pueden conectar a los de la red privada. La DMZ define una red de servicios públicos. Normalmente, se puede encontrar los servicios proxy en la DMZ.
 \end{quote}
 
 \subsection{Explica la topología \emph{DMZ con doble firewall}.}
-\label{sec:org1c20bc6}
+\label{sec:org443aa35}
 En esta topología se cuenta con un firewall de acceso público que se conecta solamente con la red dmz, y uno en la red dmz que solo se conecta con la red interna y protegida.
 
 \begin{verbatim}
@@ -203,21 +202,21 @@ RED PÚBLICA - F1 - DMZ - F2 - RED PRIVADA
 Esto permite una doble protección a los equipos que se encuentran en la red privada, al tener que atravesar dos firewalls. Si se compromete un equipo de la DMZ la red privada sigue protegida. Como inconvenientes tiene una mayor complejidad de gestión al tener que configurar dos firewalls.
 
 \subsection{Por ahora no hay VPNs. Sorry!}
-\label{sec:org5341c61}
+\label{sec:orgc388033}
 \section{Tema 4: Clusters, Balanceo de carga, alta disponibilidad, computación de altas prestaciones.}
-\label{sec:org11be809}
+\label{sec:org14c0bb7}
 \subsection{¿Qué es un balanceador de carga?}
-\label{sec:orgdc136c2}
+\label{sec:org3d6df63}
 Es un host que se encarga de distribuir la carga de procesamiento entre varios hosts. De tal forma que se maximice el número de peticiones.
 
 \textbf{Objetivo:} atender el máximo número de peticiones.
 \subsection{¿Qué es un cluster de alta disponibilidad?}
-\label{sec:org6188c86}
+\label{sec:orgcff7681}
 Es un conjunto de nodos que intenta garantizar el acceso a un servicio, ya sea mediante la tolerancia a fallos o caída de algún elemento.
 
 \textbf{Objetivo:} dar la máxima prestación de un servicio. Estar el mayor tiempo disponible o accesible.
 \subsection{¿Qué es un cluster de alto rendimiento?}
-\label{sec:org11f1a9c}
+\label{sec:org97eda66}
 Es un conjunto de nodos que busca llevar a cabo una tarea de la forma más rápida posible. Ya sea mediante técnicas de procesamiento en paralelo y/o distribuído.
 
 \textbf{Objetivo:} Maximizar el rendimiento y la potencia de cálculo.

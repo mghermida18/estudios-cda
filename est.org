@@ -9,6 +9,7 @@
 #+LATEX_HEADER: \usepackage{merriweather} %% Option 'black' gives heavier bold face
 #+LATEX_HEADER: \usepackage[T1]{fontenc}
 # #+LATEX_HEADER: \setlength{\parindent}{0pt}
+#+AUTHOR:
 
 * Tema 1: Infraestructura de los centros de datos.
 *¿Qué es un centro de datos?*
