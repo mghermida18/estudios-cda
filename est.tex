@@ -1,0 +1,224 @@
+% Created 2021-01-25 Mon 12:41
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[spanish]{babel}
+\usepackage{array}
+\usepackage{adjustbox}
+\usepackage{amsmath}
+\usepackage{merriweather} %% Option 'black' gives heavier bold face
+\usepackage[T1]{fontenc}
+\author{***REMOVED***}
+\date{\today}
+\title{Estudios}
+\hypersetup{
+ pdfauthor={***REMOVED***},
+ pdftitle={Estudios},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.4)}, 
+ pdflang={Spanish}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{Tema 1: Infraestructura de los centros de datos.}
+\label{sec:orgfbf8d7d}
+\textbf{¿Qué es un centro de datos?}
+\begin{quote}
+Es un edificio o parte de un edificio destinado al almacenamiento de áreas de computación y sus zonas de soporte.
+\end{quote}
+
+\textbf{¿Qué significa que un centro de datos sea \emph{single--tenant}?}
+\begin{quote}
+Significa que solo tiene un propietario. Que es de carácter privado.
+\end{quote}
+
+\textbf{¿Qué significa que un centro de datos sea \emph{multi--tenant}?}
+\begin{quote}
+Significa que suele estar bajo la administración de empresas de telecomunicación o de proveedores de servicios, los cuales ofrecen bajo demanda su tecnología a terceros.
+\end{quote}
+
+\textbf{¿Cómo se estructuran?}
+\begin{quote}
+Se estructuran en forma de doble estrella o copito de nieve. Se dividen en diferentes zonas: \emph{Entrance Room}, \emph{Main Distribution Area}, \emph{Horizontal Distribution Area}, \emph{Equipment Distribution Area}, \emph{Telecommunications Room}.
+\end{quote}
+
+\textbf{¿De que se encarga un \emph{MDA}?}
+\begin{quote}
+En un MDA se suele encontrar el sistema de enrutamiento y conmutación principal, que además también sirve como \emph{backbone} para la conexión con el ISP.
+\end{quote}
+
+\textbf{¿De que se encarga un \emph{HDA}?}
+\begin{quote}
+Un HDA o \emph{Horizontal Distribution Area} consiste en la distribución de la red a los \emph{EDAs}, además del almacenamiento SAN/NAS que pudiera haber.
+\end{quote}
+
+\textbf{¿Qué es un \emph{ZDA}?}
+\begin{quote}
+Un \emph{Zone Distribution Area} complementa a un \emph{HDA} y distribuye la red horizontalmente a un \emph{EDA}.
+Ejemplo: switch común a varios racks.
+\end{quote}
+
+\textbf{¿En que consiste un \emph{EDA}?}
+\begin{quote}
+Distribuye el tráfico a los equipos finales.
+Ejemplo: switch local que da servicio a un solo rack.
+\end{quote}
+
+\textbf{¿Que es un \emph{TR}?}
+\begin{quote}
+Un \emph{Telecommunications room} es el punto de control de un centro de datos. En los centros de datos privados sirve como zona de entrada para el tráfico de la organización.
+\end{quote}
+
+\textbf{Explica los diferentes niveles de redundancia definidos en \texttt{TIA-942}.}
+\begin{quote}
+\emph{N} ---  sin redundancia, no soporta ni fallos ni paradas.
+
+\emph{N+1} --- se cuenta con un equipo extra a mayores de los necesarios. Soporta el fallo/parada/mantenimiento de un solo equipo sin afectar a la disponibilidad.
+
+\emph{2N} --- se cuenta con el doble de equipos de los necesarios. Soporta el fallo/parado/mantenimiento de \emph{N} equipos.
+
+\emph{2(N+1)} --- se cuenta con el doble de equipos de los necesarios más uno. Ante el fallo completo del sistema, aún quedaría una redundancia del tipo \emph{N+1}. Soporta el fallo/parada/mantenimiento de un equipo además de un posible fallo/parada/mantenimiento de los equipos necesarios.
+\end{quote}
+
+\textbf{Explica las diferentes clasificaciones en TIERS definidas en la norma \texttt{TIA-942}.}
+
+\begin{adjustbox}{width=1.3\textwidth,center=\textwidth}
+\begin{tabular}{rllrlrl}
+TIER & Redundancia & Susceptible a & Líneas de corriente & Grupos electrógenos & Conexiones WAN & Desc.\\
+\hline
+1 & N & Fallos / Mantenimiento & 1 & NO SIMPLES & 1 & \\
+2 & N+1 \guillemotleft{}parcial\guillemotright{} & Fallos / Mantenimiento & 1 & Redundancia & 1 & Fuentes de alimentación redundantes.\\
+3 & N+1 & Fallos & 1+ (solo una al menos activa) & Redundancia & 1+ Distintos proveedores, se necesita dos ER distintos. & \\
+4 & 2(N+1) & Catástrofes & 1+ & Redundancia & 1+ & \\
+\end{tabular}
+\end{adjustbox}
+
+\section{Tema 2: RAID}
+\label{sec:orgac390dc}
+\subsection{RAID 0}
+\label{sec:orgfdec8fd}
+\begin{itemize}
+\item No tiene redundancia \(\Rightarrow\) no tolera fallos.
+\item Capacidad efectiva: N * tamaño del disco más pequeño.
+\end{itemize}
+\subsection{RAID 1}
+\label{sec:orgb1bc280}
+\begin{itemize}
+\item Tiene redundancia \(\Rightarrow\) tolera fallos de N-1 discos.
+\item Capacidad efectiva: tamaño del disco más pequeño.
+\end{itemize}
+\subsection{RAID 5}
+\label{sec:org90411fb}
+\begin{itemize}
+\item Mínimo 3 discos
+\item Capacidad efectiva: (N-1) * tamaño de disco más pequeño.
+\end{itemize}
+\section{Tema 3: Redes}
+\label{sec:org61bf1dd}
+\subsection{¿Qué es un firewall?}
+\label{sec:org540d2b1}
+\begin{quote}
+Un componente tanto hardware como software que se encarga de controlar el acceso a la red. Tiene como un objetivo principal impedir los ataques externos al interior de la red, y también monitorizar y controlar las conexiones internas al exterior.
+\end{quote}
+\subsection{¿Cuáles son las limitaciones de un firewall?}
+\label{sec:org8e5dea4}
+\begin{quote}
+Los firewall normalmente son un punto único de fallo, pues suele encontrarse solo uno entre la red externa y la interna. Además, no protege de las amenazas internas. También puede dar una sensación falsa de seguridad, pero las amenazas en la red constan de muchos aspectos.
+\end{quote}
+\subsection{¿Qué diferentes filtros firewall hay? Explica cada uno.}
+\label{sec:orgfc7f711}
+\begin{quote}
+Existen tres diferentes tipos de filtros firewall: filtro de paquetes, filtro de paquetes con estado, y filtro a nivel de aplicación.
+
+En el filtrado de paquetes solo se tiene en cuenta la información de las capas 1-4 incluídas, es decir no se trata (por lo general) la capa de aplicación. Se suele leer las cabeceras IP y también las de capa de transporte y con esa información decidir que hacer con el paquete.
+Los filtros de paquetes con estado se podría decir que tienen \guillemotleft{}memoria\guillemotright{} y estudian paquetes de inicio y fin de conexión, y además pueden llegar a reconocer a que conexión pertenece un paquete.
+
+Los filtros a nivel de aplicación ya conocen los protocolos de capa 5 TCP/IP que pasan por ellos. Así, pueden hacer un análasis más riguroso por ejemplo para vetar acceso a páginas web basado en el texto o palabras clave que pueda haber. Además, por lo general si no conoce el protocolo de capa de aplicación, como no cuenta con el \guillemotleft{}proxy\guillemotright{} para ese protocolo ni siquiera deja pasar los paquetes.
+\end{quote}
+\subsection{¿En que consiste una regla por defecto en un firewall?}
+\label{sec:orgce6c774}
+\begin{quote}
+La mayoría de los firewalls aplican una serie de reglas para decidir si un paquete pasa o no a través de él. Existen dos técnicas principales para el control del paso: aceptar por defecto (blacklisting) y denegar por defecto (whitelisting).
+
+Aceptar por defecto significa que si un paquete no es detectado por las reglas como una \guillemotleft{}amenaza\guillemotright{} se deja pasar. Esto está relacionado con el término blacklisting porque se puede entender que si cumple una regla que aparece en el archivo de \guillemotleft{}blacklist\guillemotright{} significa que hay que parar el paquete.
+
+Denegar por defecto significa que si un paquete no es detectado por las reglas como un paquete \guillemotleft{}benigno\guillemotright{} se considerará una amenaza y no se dejará pasar. Esta relacionado con el término whitelisting porque se puede entender que si cumple una regla que aparece en la \guillemotleft{}whitelist\guillemotright{} se deja pasar y en caso contrario no.
+\end{quote}
+
+\subsection{Ventajas e inconvenientes de los diferentes tipos de filtrado de paquetes.}
+\label{sec:orgc9d69f2}
+\begin{quote}
+Los filtros con estado o de paquetes tienen un buen rendimiento, pues tiene pocas dificultades en tomar las decisiones. Son transparentes para el usuario. Son simples. Pero tienen un mayor margen de error o falta de eficacia, pues la información que disponen para tomar las decisiones es limitada.
+
+Los filtros a nivel de aplicación consiguen una mejor separación entre la red interna y la red externa. Evita comunicación directa con el servidor destino. Se tiene un mayor control para cada aplicación pues ahora se puede decidir en base a cada protocolo de aplicación. Permite tener registros (logs) a alto nivel, y también reducir tráfico con uso de cachés. Sus limitaciones son variadas: para los usuarios no es transparente la implantación de un firewall proxy, además, para cada tipo de protocolo de aplicación aceptado hará falta un firewall proxy diferente. Menor rendimiento que el filtrado de paquetes pues ahora las reglas pueden ser mucho más complejas.
+
+Filtro a nivel de circuitos. Un híbrido entre un filtro de paquetes y uno de aplicación. No maneja contenidos de capa de aplicación, pero las conexiones no se hacen directamente interno-externo, si no que son interno - firewall,firewall - externo.
+\end{quote}
+\subsection{Ventajas e inconvenientes de topología \emph{dual homed host}.}
+\label{sec:org14af22c}
+\begin{quote}
+En una topología \emph{dual homed host} se tiene un único host dedicado entre la red interna y la red externa. Sus ventajas son una mayor facilidad de gestión, un menor coste. Sus desventajas son las guisantes: un único punto de fallo, cualquier vulnerabilidad del SO o firewall de ese host nos pone en riesgo.
+\end{quote}
+\subsection{Ventajas e inconvenientes de topología \emph{screened host o host bastion}.}
+\label{sec:orga55ef17}
+\begin{quote}
+En una topología \emph{screened host} se tiene un único host visible a la red externa, tras un firewall. Sus ventajas son una mayor facilidad de gestión, un menor coste. Sus desventajas son las guisantes: un único punto de fallo, cualquier vulnerabilidad o ataque al \emph{screened host} pone en riesgo a toda la red, pues ya esta detrás del firewall y no hay mucho que pueda hacer.
+\end{quote}
+\subsection{Explica la topología \emph{untrusted host}.}
+\label{sec:orga956e38}
+\begin{quote}
+El host con los servicios públicos se encuentra fuera de la red protegida. El firewall no tiene control sobre él. La configuración es delicada.
+\end{quote}
+\subsection{Explica la topología \emph{DMZ}.}
+\label{sec:org7835048}
+\begin{quote}
+La topología DMZ cuenta con tres redes diferentes: la publica, la interna y protegida, y la zona desmilitarizada. Todas ellas interconectadas por un único firewall con tres interfaces.
+Los equipos de la DMZ no se pueden conectar a los de la red privada. La DMZ define una red de servicios públicos. Normalmente, se puede encontrar los servicios proxy en la DMZ.
+\end{quote}
+
+\subsection{Explica la topología \emph{DMZ con doble firewall}.}
+\label{sec:org1c20bc6}
+En esta topología se cuenta con un firewall de acceso público que se conecta solamente con la red dmz, y uno en la red dmz que solo se conecta con la red interna y protegida.
+
+\begin{verbatim}
+RED PÚBLICA - F1 - DMZ - F2 - RED PRIVADA
+\end{verbatim}
+
+Esto permite una doble protección a los equipos que se encuentran en la red privada, al tener que atravesar dos firewalls. Si se compromete un equipo de la DMZ la red privada sigue protegida. Como inconvenientes tiene una mayor complejidad de gestión al tener que configurar dos firewalls.
+
+\subsection{Por ahora no hay VPNs. Sorry!}
+\label{sec:org5341c61}
+\section{Tema 4: Clusters, Balanceo de carga, alta disponibilidad, computación de altas prestaciones.}
+\label{sec:org11be809}
+\subsection{¿Qué es un balanceador de carga?}
+\label{sec:orgdc136c2}
+Es un host que se encarga de distribuir la carga de procesamiento entre varios hosts. De tal forma que se maximice el número de peticiones.
+
+\textbf{Objetivo:} atender el máximo número de peticiones.
+\subsection{¿Qué es un cluster de alta disponibilidad?}
+\label{sec:org6188c86}
+Es un conjunto de nodos que intenta garantizar el acceso a un servicio, ya sea mediante la tolerancia a fallos o caída de algún elemento.
+
+\textbf{Objetivo:} dar la máxima prestación de un servicio. Estar el mayor tiempo disponible o accesible.
+\subsection{¿Qué es un cluster de alto rendimiento?}
+\label{sec:org11f1a9c}
+Es un conjunto de nodos que busca llevar a cabo una tarea de la forma más rápida posible. Ya sea mediante técnicas de procesamiento en paralelo y/o distribuído.
+
+\textbf{Objetivo:} Maximizar el rendimiento y la potencia de cálculo.
+\end{document}
